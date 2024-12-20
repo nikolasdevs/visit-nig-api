@@ -1,0 +1,23 @@
+###
+GET http://localhost:5001/api/user
+
+###
+GET http://localhost:5001/api/user/1
+
+###
+POST http://localhost:5001/api/user/
+Content-Type: application/json
+
+{
+  "name": "John",
+  "email": "john@test.com"
+  }
+
+###
+PUT http://localhost:5001/api/user/1
+Content-Type: application/json
+
+{
+  "name": "Admin2",
+  "email": "admin2@test.com"
+  }
