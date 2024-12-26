@@ -11,11 +11,11 @@ import {
 
 const router = express.Router();
 
-router.post("/accommodation", createAcc);
-router.get("/accommodation", getAllAcc);
-router.get("/accommodation/:id", getAccById);
- router.get("/accommodation/type", getAccByType);
-router.put("/accommodation/:id", updateAcc);
-router.delete("/accommodation/:id", deleteAcc);
+router.post("/accommodations", createAcc);
+router.get("/accommodations", getAllAcc);
+router.get("/accommodations/:id", getAccById);
+router.get("/accommodations/type/:type", getAccByType);
+router.put("/accommodations/:id", updateAcc);
+router.delete("/accommodations/:id", deleteAcc);
 
 export default router;

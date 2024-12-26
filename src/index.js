@@ -6,8 +6,8 @@ import userRoutes from "./routes/userRoutes.js";
 import accRoutes from "./routes/accRoutes.js";
 
 import errorHandling from "./middlewares/errorHandler.js";
-import createUserTable from "./data/createUserTable.js";
-import createAccTable from "./data/createAccTable.js";
+// import createUserTable from "./data/createUserTable.js";
+// import createAccTable from "./data/createAccTable.js";
 
 dotenv.config();
 
@@ -26,8 +26,8 @@ app.use("/api", accRoutes);
 app.use(errorHandling);
 
 //Create Table before starting server
-createUserTable();
-createAccTable();
+// createUserTable();
+// createAccTable();
 
 //TESTING POSTGRES Connection
 app.get("/", async (req, res) => {
