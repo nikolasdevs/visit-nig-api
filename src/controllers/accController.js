@@ -24,7 +24,7 @@ const handleResponse = (res, status, message, data = null) => {
 export const createAcc = async (req, res, next) => {
   const { name, address, description, type } = req.body;
 
-  if (!name || !address || !description || !type) {
+  if (!name || !address || !description || localGovt || !type) {
     return handleResponse(res, 400, "Kindly fill in missing information");
   }
 
