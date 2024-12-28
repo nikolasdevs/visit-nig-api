@@ -43,6 +43,7 @@ Content-Type: application/json
 {
   "name": "Airbnb A",
   "address": "Alagbaka Road, Ajah",
+  "localGovt": "Akure South",
   "description": "This is AIRBNB A",
   "type": "Airbnb"
 

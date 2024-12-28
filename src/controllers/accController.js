@@ -9,7 +9,7 @@
 
 // Standardized response function
 
-import { accommodation_type, PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
