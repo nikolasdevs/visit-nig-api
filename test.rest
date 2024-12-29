@@ -31,23 +31,24 @@ DELETE http://localhost:5001/api/user/1
 GET http://localhost:5001/api/accommodations
 
 ###
-GET http://localhost:5001/api/accommodations/2
+GET http://localhost:5001/api/accommodations/85f28f9e-537f-45b3-ba78-4b24380cfe50
 
 ###
-GET http://localhost:5001/api/accommodations/type/airbnb/
+GET http://localhost:5001/api/accommodations/type/resort/
 
 ###
 POST http://localhost:5001/api/accommodations/
 Content-Type: application/json
 
 {
-  "name": "Airbnb A",
-  "address": "Alagbaka Road, Ajah",
-  "localGovt": "Akure South",
-  "description": "This is AIRBNB A",
-  "type": "Airbnb"
-
+  "name": "HOTEL A",
+  "address": "Alagbaka Road, Akure",
+  "localGovt": "Ondo South",
+  "description": "This is HOTEL A",
+  "slug": "hotel-a",
+  "type": "Hotel"
   }
+
 
 ###
 PUT http://localhost:5001/api/accommodations/1
@@ -61,4 +62,4 @@ Content-Type: application/json
 
   }
 ###
-DELETE http://localhost:5001/api/accommodations/3
+DELETE http://localhost:5001/api/accommodations/85f28f9e-537f-45b3-ba78-4b24380cfe50

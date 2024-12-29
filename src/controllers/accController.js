@@ -22,14 +22,14 @@ const handleResponse = (res, status, message, data = null) => {
 };
 
 export const createAcc = async (req, res, next) => {
-  const { name, address, description, type } = req.body;
+  const { name, address, localGovt, description, type, slug } = req.body;
 
-  if (!name || !address || !description || localGovt || !type) {
+  if (!name || !address || !description || !localGovt || !type || !slug) {
     return handleResponse(res, 400, "Kindly fill in missing information");
   }
 
   try {
-    const existingName = await prisma.accommodations.findUnique({
+    const existingName = await prisma.accommodation.findUnique({
       where: { name },
     });
     if (existingName) {
@@ -40,8 +40,8 @@ export const createAcc = async (req, res, next) => {
       );
     }
 
-    const newAcc = await prisma.accommodations.create({
-      data: { name, address, description, type },
+    const newAcc = await prisma.accommodation.create({
+      data: { name, address, localGovt, description, type, slug },
     });
     handleResponse(res, 201, `${newAcc.type} created successfully`, newAcc);
   } catch (err) {
@@ -51,7 +51,7 @@ export const createAcc = async (req, res, next) => {
 
 export const getAllAcc = async (req, res, next) => {
   try {
-    const accommodations = await prisma.accommodations.findMany();
+    const accommodations = await prisma.accommodation.findMany();
     if (!accommodations || accommodations.length === 0) {
       return handleResponse(res, 404, "No accommodations found");
     }
@@ -72,12 +72,13 @@ export const getAccById = async (req, res, next) => {
     if (!id) {
       return handleResponse(res, 400, "Accommodation ID is required");
     }
-    const accommodation = await prisma.accommodations.findUnique({
-      where: { id: Number(id) },
+    const accommodation = await prisma.accommodation.findUnique({
+      where: { id },
       include: {
         // include any related models if needed
       },
     });
+
     if (!accommodation) {
       return handleResponse(res, 404, "Accommodation not found");
     }
@@ -88,6 +89,7 @@ export const getAccById = async (req, res, next) => {
       accommodation
     );
   } catch (err) {
+    console.error(err);
     return next(err);
   }
 };
@@ -116,7 +118,7 @@ export const getAccByType = async (req, res, next) => {
     }
 
     // Fetch accommodations
-    const accommodations = await prisma.accommodations.findMany({
+    const accommodations = await prisma.accommodation.findMany({
       where: { type: dbType },
     });
 
@@ -152,16 +154,16 @@ export const updateAcc = async (req, res, next) => {
   }
 
   try {
-    const existingAcc = await prisma.accommodations.findUnique({
-      where: { id: Number(id) },
+    const existingAcc = await prisma.accommodation.findUnique({
+      where: { id },
     });
 
     if (!existingAcc) {
       return handleResponse(res, 404, "Accommodation not found");
     }
 
-    const updatedAcc = await prisma.accommodations.update({
-      where: { id: Number(id) },
+    const updatedAcc = await prisma.accommodation.update({
+      where: { id },
       data: { name, address, description, type },
     });
 
@@ -176,8 +178,8 @@ export const deleteAcc = async (req, res, next) => {
   if (!id) return handleResponse(res, 400, "Accommodation ID is required");
 
   try {
-    const deletedAcc = await prisma.accommodations.delete({
-      where: { id: Number(id) },
+    const deletedAcc = await prisma.accommodation.delete({
+      where: { id },
     });
     if (!deletedAcc) return handleResponse(res, 404, "Accommodation not found");
     handleResponse(res, 200, "Accommodation deleted successfully", deletedAcc);
