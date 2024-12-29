@@ -40,6 +40,7 @@ export const createAcc = async (req, res, next) => {
       );
     }
 
+    const slug = id.toLowerCase().replace(/\s/g, "-");
     const newAcc = await prisma.accommodation.create({
       data: { name, address, localGovt, description, type, slug },
     });

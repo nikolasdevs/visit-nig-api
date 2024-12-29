@@ -41,11 +41,11 @@ POST http://localhost:5001/api/accommodations/
 Content-Type: application/json
 
 {
-  "name": "HOTEL A",
-  "address": "Alagbaka Road, Akure",
+  "name": "HOTEL B",
+  "address": "Alagbaka Road, Enugu",
   "localGovt": "Ondo South",
-  "description": "This is HOTEL A",
-  "slug": "hotel-a",
+  "description": "This is HOTEL B",
+  "slug": "hotel-b",
   "type": "Hotel"
   }
 
