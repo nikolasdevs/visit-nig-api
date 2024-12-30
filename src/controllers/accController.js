@@ -1,14 +1,3 @@
-// import {
-//   createAccService,
-//   deleteAccService,
-//   getAccByIdService,
-//   getAccByTypeService,
-//   getAllAccService,
-//   updateAccService,
-// } from "../models/accModel.js";
-
-// Standardized response function
-
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -28,6 +17,12 @@ export const createAcc = async (req, res, next) => {
     return handleResponse(res, 400, "Kindly fill in missing information");
   }
 
+  // const slug = slugify(name, {
+  //   lower: true,
+  //   strict: true,
+  //   trim: true,
+  // });
+
   try {
     const existingName = await prisma.accommodation.findUnique({
       where: { name },
@@ -40,7 +35,6 @@ export const createAcc = async (req, res, next) => {
       );
     }
 
-    const slug = id.toLowerCase().replace(/\s/g, "-");
     const newAcc = await prisma.accommodation.create({
       data: { name, address, localGovt, description, type, slug },
     });
@@ -67,14 +61,16 @@ export const getAllAcc = async (req, res, next) => {
   }
 };
 
-export const getAccById = async (req, res, next) => {
+export const getAccBySlug = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    if (!id) {
-      return handleResponse(res, 400, "Accommodation ID is required");
+    const { slug } = req.params;
+    if (!slug) {
+      return handleResponse(res, 400, "Slug is required");
     }
-    const accommodation = await prisma.accommodation.findUnique({
-      where: { id },
+    // const names = name.toLowerCase();
+
+    const accommodation = await prisma.accommodation.findFirst({
+      where: { slug },
       include: {
         // include any related models if needed
       },
@@ -163,9 +159,18 @@ export const updateAcc = async (req, res, next) => {
       return handleResponse(res, 404, "Accommodation not found");
     }
 
+    let slug = existingAcc.slug;
+    if (name && name !== existingAcc.name) {
+      slug = slugify(name, {
+        lower: true,
+        strict: true,
+        trim: true,
+      });
+    }
+
     const updatedAcc = await prisma.accommodation.update({
       where: { id },
-      data: { name, address, description, type },
+      data: { name, slug, address, description, type },
     });
 
     handleResponse(res, 200, "Accommodation updated successfully", updatedAcc);

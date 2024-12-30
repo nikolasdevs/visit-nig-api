@@ -31,10 +31,10 @@ DELETE http://localhost:5001/api/user/1
 GET http://localhost:5001/api/accommodations
 
 ###
-GET http://localhost:5001/api/accommodations/85f28f9e-537f-45b3-ba78-4b24380cfe50
+GET http://localhost:5001/api/accommodations/resort-a
 
 ###
-GET http://localhost:5001/api/accommodations/type/resort/
+GET http://localhost:5001/api/accommodations/type/hotel/
 
 ###
 POST http://localhost:5001/api/accommodations/

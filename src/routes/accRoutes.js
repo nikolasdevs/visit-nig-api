@@ -3,7 +3,7 @@ import express from "express";
 import {
   createAcc,
   deleteAcc,
-  getAccById,
+  getAccBySlug,
   getAccByType,
   getAllAcc,
   updateAcc,
@@ -13,7 +13,7 @@ const router = express.Router();
 
 router.post("/accommodations", createAcc);
 router.get("/accommodations", getAllAcc);
-router.get("/accommodations/:id", getAccById);
+router.get("/accommodations/:slug", getAccBySlug);
 router.get("/accommodations/type/:type", getAccByType);
 router.put("/accommodations/:id", updateAcc);
 router.delete("/accommodations/:id", deleteAcc);
