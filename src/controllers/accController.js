@@ -11,17 +11,25 @@ const handleResponse = (res, status, message, data = null) => {
 };
 
 export const createAcc = async (req, res, next) => {
-  const { name, address, localGovt, description, type, slug } = req.body;
+  // upload.array("images", 5)(req, res, async (err) => {
+  //   if (err) {
+  //     return handleResponse(res, 400, err.message);
+  //   }
 
-  if (!name || !address || !description || !localGovt || !type || !slug) {
+  const { name, address, state, region, description, type, imageUrls, slug } =
+    req.body;
+
+  if (
+    !name ||
+    !address ||
+    !description ||
+    !state ||
+    !region ||
+    !type ||
+    !slug
+  ) {
     return handleResponse(res, 400, "Kindly fill in missing information");
   }
-
-  // const slug = slugify(name, {
-  //   lower: true,
-  //   strict: true,
-  //   trim: true,
-  // });
 
   try {
     const existingName = await prisma.accommodation.findUnique({
@@ -35,8 +43,19 @@ export const createAcc = async (req, res, next) => {
       );
     }
 
+    // const imageUrls = req.files.map((file) => file.path);
+
     const newAcc = await prisma.accommodation.create({
-      data: { name, address, localGovt, description, type, slug },
+      data: {
+        name,
+        address,
+        state,
+        region,
+        description,
+        imageUrls,
+        type,
+        slug,
+      },
     });
     handleResponse(res, 201, `${newAcc.type} created successfully`, newAcc);
   } catch (err) {
@@ -106,7 +125,6 @@ export const getAccByType = async (req, res, next) => {
       apartment: "Apartment",
       airbnb: "Airbnb",
       resort: "Resort",
-      other: "Other",
     };
 
     const dbType = accommodation_type[type];

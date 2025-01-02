@@ -41,25 +41,35 @@ POST http://localhost:5001/api/accommodations/
 Content-Type: application/json
 
 {
-  "name": "HOTEL B",
-  "address": "Alagbaka Road, Enugu",
-  "localGovt": "Ondo South",
-  "description": "This is HOTEL B",
-  "slug": "hotel-b",
-  "type": "Hotel"
+  "name": "RESORT A",
+  "address": "Ala Road, Ibadan",
+  "state": "Oyo",
+  "region": "South_West",
+  "imageUrls": ["http://res.cloudinary.com/dpnzmcban/image/upload/v1735690932/pcw06ghpnxizsbhx1x2m.jpg", "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/hotel-1.jpg", "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/hotel-5.jpg"],
+  "description": "This is RESORT A",
+  "slug": "resort-a",
+  "type": "Resort"
   }
 
 
 ###
-PUT http://localhost:5001/api/accommodations/1
+PUT http://localhost:5001/api/accommodations/5cd54a6e-96e6-4238-bec6-332c56d6c096
 Content-Type: application/json
 
 {
-  "name": "HOTEL A",
-  "address": "FUTA Road, Akure",
-  "description": "This is HOTEL A",
-  "type": "Hotel"
-
+   "name": "APARTMENT A",
+      "address": "Testing Road, Abeokuta",
+      "description": "This is APARTMENT A",
+      "region": "South_West",
+      "state": "Ogun",
+      "imageUrls": [
+        "http://res.cloudinary.com/dpnzmcban/image/upload/v1735690932/pcw06ghpnxizsbhx1x2m.jpg",
+        "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/hotel-1.jpg",
+        "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/hotel-5.jpg"
+      ],
+      "createdAt": "2025-01-01T23:56:58.793Z",
+      "slug": "apartment-a",
+      "type": "Apartment"
   }
 ###
 DELETE http://localhost:5001/api/accommodations/85f28f9e-537f-45b3-ba78-4b24380cfe50

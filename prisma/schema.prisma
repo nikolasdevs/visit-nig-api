@@ -12,8 +12,10 @@ model Accommodation {
   name        String             @unique @db.VarChar(255)
   address     String             @db.VarChar(255)
   description String             @db.VarChar(255)
+  region      region_type
+  state       String             @db.VarChar(255)
+  imageUrls   String[]
   createdAt   DateTime?          @default(now()) @db.Timestamp(6)
-  localGovt   String             @db.VarChar(255)
   slug        String             @unique @db.VarChar(255)
   type        accommodation_type
 
@@ -33,4 +35,13 @@ enum accommodation_type {
   Resort
   Apartment
   Other
+}
+
+enum region_type {
+  South_West
+  South_East
+  South_South
+  North_West
+  North_East
+  North_Central
 }
