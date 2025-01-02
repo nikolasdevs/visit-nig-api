@@ -158,13 +158,21 @@ export const getAccByType = async (req, res, next) => {
 
 export const updateAcc = async (req, res, next) => {
   const { id } = req.params;
-  const { name, address, description, type } = req.body;
+  const { name, address, state, region, description, type, slug } = req.body;
 
   if (!id) {
     return handleResponse(res, 400, "Accommodation ID is required");
   }
 
-  if (!name || !address || !description || !type) {
+  if (
+    !name ||
+    !address ||
+    !state ||
+    !region ||
+    !description ||
+    !type ||
+    !slug
+  ) {
     return handleResponse(res, 400, "Kindly fill in missing information");
   }
 
@@ -177,18 +185,9 @@ export const updateAcc = async (req, res, next) => {
       return handleResponse(res, 404, "Accommodation not found");
     }
 
-    let slug = existingAcc.slug;
-    if (name && name !== existingAcc.name) {
-      slug = slugify(name, {
-        lower: true,
-        strict: true,
-        trim: true,
-      });
-    }
-
     const updatedAcc = await prisma.accommodation.update({
       where: { id },
-      data: { name, slug, address, description, type },
+      data: { name, slug, address, state, region, description, type },
     });
 
     handleResponse(res, 200, "Accommodation updated successfully", updatedAcc);

@@ -34,42 +34,41 @@ GET http://localhost:5001/api/accommodations
 GET http://localhost:5001/api/accommodations/resort-a
 
 ###
-GET http://localhost:5001/api/accommodations/type/hotel/
+GET http://localhost:5001/api/accommodations/type/apartment/
 
 ###
 POST http://localhost:5001/api/accommodations/
 Content-Type: application/json
 
 {
-  "name": "AIRBNB A",
-  "address": "Epe Road, Ibeju-Lekki",
+  "name": "Tropical Tides Bungalow",
+  "address": "234 Mirage Drive, Ibeju-Lekki",
   "state": "Lagos",
   "region": "South_West",
-  "imageUrls": ["https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/hotel-4.jpg", "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/hotel-1.jpg", "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/hotel-3.jpg"],
-  "description": "This is APARTMENT A",
-  "slug": "airbnb-a",
-  "type": "Airbnb"
+  "imageUrls": ["https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/apartment-1.jpg", "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/apartment-2.jpg", "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/apartment-3.jpg"],
+  "description": "A luxurious desert getaway with panoramic views of red rock formations. Features include a private pool, outdoor fire pit, and spacious open-plan living.",
+  "slug": "tropical-tides-bungalow",
+  "type": "Apartment"
   }
 
-
 ###
-PUT http://localhost:5001/api/accommodations/e67fa80d-bbfe-4ea0-b86b-cc769e7d4dd2
+PUT http://localhost:5001/api/accommodations/6a5d46ce-2207-463a-b167-da8a549d4262
 Content-Type: application/json
 
 {
-   "name": "APARTMENT A",
-      "address": "Testing Road, Abeokuta",
-      "description": "This is APARTMENT A",
-      "region": "South_West",
-      "state": "Ogun",
+ "name": "Urban Oasis Loft",
+      "address": "567 Evergreen Trail, Jackson Hole, Port-Harcourt",
+      "description": "This stylish loft in the heart of Brooklyn offers a vibrant city experience with rooftop access and a cozy industrial vibe. Perfect for exploring local coffee shops and nightlife.",
+      "region": "South_South",
+      "state": "Rivers",
       "imageUrls": [
-        "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/hotel-1.jpg",
-        "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/hotel-2.jpg",
-        "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/hotel-5.jpg"
+        "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/apartment-7.jpg",
+        "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/apartment-8.jpg",
+        "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/apartment-9.jpg"
       ],
-      "createdAt": "2025-01-01T23:56:58.793Z",
-      "slug": "apartment-a",
+      "createdAt": "2025-01-02T18:58:05.517Z",
+      "slug": "urban-oasis-loft",
       "type": "Apartment"
-  }
+    }
 ###
-DELETE http://localhost:5001/api/accommodations/5cd54a6e-96e6-4238-bec6-332c56d6c096
+DELETE http://localhost:5001/api/accommodations/17f5a7a3-cf4b-4530-9ac0-00876dd206d8

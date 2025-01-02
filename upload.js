@@ -46,8 +46,8 @@ const generateTransformedUrl = (publicId) => {
           fetch_format: "auto",
         },
         {
-          width: 800,
-          height: 800,
+          width: 1000,
+          height: 1000,
           crop: "fill",
           gravity: "auto",
         },
@@ -61,7 +61,18 @@ const generateTransformedUrl = (publicId) => {
 
 // Example usage
 (async () => {
-  const images = ["./hotel/hotel-1.jpg", "./hotel/hotel-2.jpg"];
+  const images = [
+    "./accommodation/apartment/apartment-1.jpg",
+    "./accommodation/apartment/apartment-2.jpg",
+    "./accommodation/apartment/apartment-3.jpg",
+    "./accommodation/apartment/apartment-4.jpg",
+    "./accommodation/apartment/apartment-5.jpg",
+    "./accommodation/apartment/apartment-6.jpg",
+    "./accommodation/apartment/apartment-7.jpg",
+    "./accommodation/apartment/apartment-8.jpg",
+    "./accommodation/apartment/apartment-9.jpg",
+    "./accommodation/apartment/apartment-10.jpg",
+  ];
 
   try {
     const uploadedUrls = await uploadImages(images);
