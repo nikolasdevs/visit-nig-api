@@ -29,6 +29,88 @@ model users {
   created_at DateTime? @default(now()) @db.Timestamp(6)
 }
 
+model Tourism {
+  id          String      @id @default(uuid())
+  name        String      @unique @db.VarChar(255)
+  address     String      @db.VarChar(255)
+  description String      @db.VarChar(255)
+  region      region_type
+  state       String      @db.VarChar(255)
+  imageUrls   String[]
+  slug        String      @unique @db.VarChar(255)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  categoryId  String?
+
+  @@unique([id, slug])
+}
+
+model Shopping {
+  id          String         @id @default(uuid())
+  name        String         @unique @db.VarChar(255)
+  address     String         @db.VarChar(255)
+  description String         @db.VarChar(255)
+  region      region_type
+  state       String         @db.VarChar(255)
+  imageUrls   String[]
+  slug        String         @unique @db.VarChar(255)
+  shopping    ShoppingType[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  categoryId  String?
+
+  @@unique([id, slug])
+}
+
+model Nightlife {
+  id          String          @id @default(uuid())
+  name        String          @unique @db.VarChar(255)
+  address     String          @db.VarChar(255)
+  description String          @db.VarChar(255)
+  region      region_type
+  state       String          @db.VarChar(255)
+  imageUrls   String[]
+  slug        String          @unique @db.VarChar(255)
+  nightlife   NightlifeType[]
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  categoryId  String?
+
+  @@unique([id, slug])
+}
+
+model Event {
+  id          String      @id @default(uuid())
+  name        String      @unique @db.VarChar(255)
+  address     String      @db.VarChar(255)
+  description String      @db.VarChar(255)
+  region      region_type
+  state       String      @db.VarChar(255)
+  imageUrls   String[]
+  slug        String      @unique @db.VarChar(255)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  categoryId  String?
+
+  @@unique([id, slug])
+}
+
+model Food_Drink {
+  id          String      @id @default(uuid())
+  name        String      @unique @db.VarChar(255)
+  address     String      @db.VarChar(255)
+  description String      @db.VarChar(255)
+  region      region_type
+  state       String      @db.VarChar(255)
+  imageUrls   String[]
+  slug        String      @unique @db.VarChar(255)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  categoryId  String?
+
+  @@unique([id, slug])
+}
+
 enum accommodation_type {
   Hotel
   Airbnb
@@ -44,4 +126,24 @@ enum region_type {
   North_West
   North_East
   North_Central
+}
+
+enum ShoppingType {
+  MALL
+  MARKET
+}
+
+enum NightlifeType {
+  CLUB
+  LOUNGE
+  BARS_CAFE
+}
+
+enum CategoryType {
+  ACCOMMODATION
+  EVENT
+  FOOD_DRINK
+  NIGHTLIFE
+  SHOPPING
+  TOURISM
 }
