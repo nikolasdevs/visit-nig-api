@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import pool from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
 import accRoutes from "./routes/accRoutes.js";
+import tourRoutes from "./routes/tourRoutes.js";
 
 import errorHandling from "./middlewares/errorHandler.js";
 // import createUserTable from "./data/createUserTable.js";
@@ -21,6 +22,7 @@ app.use(cors());
 // Routes
 app.use("/api", userRoutes);
 app.use("/api", accRoutes);
+app.use("/api", tourRoutes);
 
 // Error handling Middleware
 app.use(errorHandling);

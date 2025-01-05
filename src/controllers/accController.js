@@ -11,11 +11,6 @@ const handleResponse = (res, status, message, data = null) => {
 };
 
 export const createAcc = async (req, res, next) => {
-  // upload.array("images", 5)(req, res, async (err) => {
-  //   if (err) {
-  //     return handleResponse(res, 400, err.message);
-  //   }
-
   const { name, address, state, region, description, type, imageUrls, slug } =
     req.body;
 

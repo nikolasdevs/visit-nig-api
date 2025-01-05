@@ -72,3 +72,48 @@ Content-Type: application/json
     }
 ###
 DELETE http://localhost:5001/api/accommodations/17f5a7a3-cf4b-4530-9ac0-00876dd206d8
+
+
+###
+GET http://localhost:5001/api/tours
+
+###
+GET http://localhost:5001/api/tours/idanre-hill
+
+
+###
+POST http://localhost:5001/api/tours/
+Content-Type: application/json
+
+{
+ "name": "Idanre Hill",
+  "address": "Jackson Hole,Idanre",
+  "description": "This stylish loft in the heart of Brooklyn offers a vibrant city experience with rooftop access and a cozy industrial vibe. Perfect for exploring local coffee shops and nightlife.",
+  "region": "South_West",
+  "state": "Ondo",
+  "imageUrls": ["https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/airbnb-8.jpg",
+    "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/apartment-1.jpg",
+    "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/hotel-2.jpg"],
+  "createdAt": "2025-01-02T18:58:05.517Z",
+  "slug": "idanre-hill"
+  }
+
+###
+PUT http://localhost:5001/api/tours/lekki-conservation-center
+Content-Type: application/json
+
+{
+      "name": "Lekki Conservation Center",
+      "address": "Jackson Hole, Ikota",
+      "description": "This stylish loft in the heart of Brooklyn offers a vibrant city experience with rooftop access and a cozy industrial vibe. Perfect for exploring local coffee shops and nightlife.",
+      "region": "South_West",
+      "state": "Lagos",
+      "imageUrls": [
+        "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/resort-2.jpg",
+        "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/hotel-9.jpg",
+        "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/airbnb-5.jpg"
+      ],
+      "slug": "lekki-conservation-center"
+    }
+###
+DELETE http://localhost:5001/api/tours/d1396962-15f4-43a7-985b-82b6ded4b0d9
