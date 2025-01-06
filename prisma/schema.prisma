@@ -46,6 +46,23 @@ model Tourism {
 }
 
 model Shopping {
+  id          String        @id @default(uuid())
+  name        String        @unique @db.VarChar(255)
+  address     String        @db.VarChar(255)
+  description String        @db.VarChar(255)
+  region      region_type
+  state       String        @db.VarChar(255)
+  imageUrls   String[]
+  slug        String        @unique @db.VarChar(255)
+  type        shopping_type
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  categoryId  String?
+
+  @@unique([id, slug])
+}
+
+model Nightlife {
   id          String         @id @default(uuid())
   name        String         @unique @db.VarChar(255)
   address     String         @db.VarChar(255)
@@ -54,26 +71,9 @@ model Shopping {
   state       String         @db.VarChar(255)
   imageUrls   String[]
   slug        String         @unique @db.VarChar(255)
-  shopping    ShoppingType[]
+  type        nightlife_type
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt
-  categoryId  String?
-
-  @@unique([id, slug])
-}
-
-model Nightlife {
-  id          String          @id @default(uuid())
-  name        String          @unique @db.VarChar(255)
-  address     String          @db.VarChar(255)
-  description String          @db.VarChar(255)
-  region      region_type
-  state       String          @db.VarChar(255)
-  imageUrls   String[]
-  slug        String          @unique @db.VarChar(255)
-  nightlife   NightlifeType[]
-  createdAt   DateTime        @default(now())
-  updatedAt   DateTime        @updatedAt
   categoryId  String?
 
   @@unique([id, slug])
@@ -128,15 +128,15 @@ enum region_type {
   North_Central
 }
 
-enum ShoppingType {
-  MALL
-  MARKET
+enum shopping_type {
+  Mall
+  Market
 }
 
-enum NightlifeType {
-  CLUB
-  LOUNGE
-  BARS_CAFE
+enum nightlife_type {
+  Club
+  Lounge
+  Bars_Cafe
 }
 
 enum CategoryType {

@@ -5,6 +5,7 @@ import pool from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
 import accRoutes from "./routes/accRoutes.js";
 import tourRoutes from "./routes/tourRoutes.js";
+import nightlifeRoutes from "./routes/nightlifeRoutes.js";
 
 import errorHandling from "./middlewares/errorHandler.js";
 // import createUserTable from "./data/createUserTable.js";
@@ -23,6 +24,7 @@ app.use(cors());
 app.use("/api", userRoutes);
 app.use("/api", accRoutes);
 app.use("/api", tourRoutes);
+app.use("/api", nightlifeRoutes);
 
 // Error handling Middleware
 app.use(errorHandling);
