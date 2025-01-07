@@ -28,13 +28,13 @@ DELETE http://localhost:5001/api/user/1
 
 
 ###
-GET http://localhost:5001/api/accommodations
+GET http://localhost:5001/api/shopping
 
 ###
 GET http://localhost:5001/api/accommodations/resort-a
 
 ###
-GET http://localhost:5001/api/accommodations/type/apartment/
+GET http://localhost:5001/api/shopping/type/market
 
 ###
 POST http://localhost:5001/api/shopping/
@@ -75,7 +75,7 @@ DELETE http://localhost:5001/api/accommodations/17f5a7a3-cf4b-4530-9ac0-00876dd2
 
 
 ###
-GET http://localhost:5001/api/shopping/type/market
+GET http://localhost:5001/api/shopping
 
 ###
 GET http://localhost:5001/api/events/osun-osogbo-festival
@@ -99,21 +99,22 @@ Content-Type: application/json
   }
 
 ###
-PUT http://localhost:5001/api/food_drinks/lekki-conservation-center
+PUT http://localhost:5001/api/shopping/a514fff8-2f3b-495f-b63b-520a8bf43e1e
 Content-Type: application/json
 
 {
-      "name": "Lekki Conservation Center",
-      "address": "Jackson Hole, Ikota",
-      "description": "This stylish loft in the heart of Brooklyn offers a vibrant city experience with rooftop access and a cozy industrial vibe. Perfect for exploring local coffee shops and nightlife.",
+      "name": "Owena Market",
+      "address": "Owena Road, Owena",
+      "description": "A luxurious eatery with panoramic views of red rock formations. Features include a private pool, outdoor fire pit, and spacious open-plan living.",
       "region": "South_West",
-      "state": "Lagos",
+      "state": "Ondo",
       "imageUrls": [
-        "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/resort-2.jpg",
-        "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/hotel-9.jpg",
-        "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/airbnb-5.jpg"
+        "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/airbnb-4.jpg",
+        "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/apartment-9.jpg",
+        "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/resort-4.jpg"
       ],
-      "slug": "lekki-conservation-center"
+      "slug": "owema-market",
+      "type": "Market"
     }
 ###
 DELETE http://localhost:5001/api/food_drinks/d1396962-15f4-43a7-985b-82b6ded4b0d9

@@ -108,7 +108,7 @@ export const getShoppingByType = async (req, res, next) => {
     // Map type to database value
     const shopping_type = {
       mall: "Mall",
-      market: "market",
+      market: "Market",
     };
 
     const dbType = shopping_type[type];
