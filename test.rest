@@ -37,18 +37,18 @@ GET http://localhost:5001/api/accommodations/resort-a
 GET http://localhost:5001/api/accommodations/type/apartment/
 
 ###
-POST http://localhost:5001/api/accommodations/
+POST http://localhost:5001/api/shopping/
 Content-Type: application/json
 
 {
-  "name": "Tropical Tides Bungalow",
-  "address": "234 Mirage Drive, Ibeju-Lekki",
-  "state": "Lagos",
+  "name": "Owena Market",
+  "address": "Owena Road, Owena",
+  "state": "Ondo",
   "region": "South_West",
-  "imageUrls": ["https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/apartment-1.jpg", "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/apartment-2.jpg", "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/resort-3.jpg"],
+  "imageUrls": ["https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/airbnb-4.jpg", "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/apartment-9.jpg", "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/resort-4.jpg"],
   "description": "A luxurious eatery with panoramic views of red rock formations. Features include a private pool, outdoor fire pit, and spacious open-plan living.",
   "slug": "tropical-tides-bungalow",
-  "type": "Apartment"
+  "type": "Market"
   }
 
 ###
@@ -75,14 +75,14 @@ DELETE http://localhost:5001/api/accommodations/17f5a7a3-cf4b-4530-9ac0-00876dd2
 
 
 ###
-GET http://localhost:5001/api/events
+GET http://localhost:5001/api/shopping/type/market
 
 ###
 GET http://localhost:5001/api/events/osun-osogbo-festival
 
 
 ###
-POST http://localhost:5001/api/events/
+POST http://localhost:5001/api/markets/
 Content-Type: application/json
 
 {
