@@ -6,10 +6,11 @@ import userRoutes from "./routes/userRoutes.js";
 import accRoutes from "./routes/accRoutes.js";
 import tourRoutes from "./routes/tourRoutes.js";
 import nightlifeRoutes from "./routes/nightlifeRoutes.js";
+import shoppingRoutes from "./routes/shoppingRoutes.js";
+import eventRoutes from "./routes/eventRoutes.js";
+import food_drinkRoutes from "./routes/food_drinkRoutes.js";
 
 import errorHandling from "./middlewares/errorHandler.js";
-// import createUserTable from "./data/createUserTable.js";
-// import createAccTable from "./data/createAccTable.js";
 
 dotenv.config();
 
@@ -23,15 +24,14 @@ app.use(cors());
 // Routes
 app.use("/api", userRoutes);
 app.use("/api", accRoutes);
+app.use("/api", eventRoutes);
 app.use("/api", tourRoutes);
 app.use("/api", nightlifeRoutes);
+app.use("/api", shoppingRoutes);
+app.use("/api", food_drinkRoutes);
 
 // Error handling Middleware
 app.use(errorHandling);
-
-//Create Table before starting server
-// createUserTable();
-// createAccTable();
 
 //TESTING POSTGRES Connection
 app.get("/", async (req, res) => {

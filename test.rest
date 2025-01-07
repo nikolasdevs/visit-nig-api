@@ -45,8 +45,8 @@ Content-Type: application/json
   "address": "234 Mirage Drive, Ibeju-Lekki",
   "state": "Lagos",
   "region": "South_West",
-  "imageUrls": ["https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/apartment-1.jpg", "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/apartment-2.jpg", "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/apartment-3.jpg"],
-  "description": "A luxurious desert getaway with panoramic views of red rock formations. Features include a private pool, outdoor fire pit, and spacious open-plan living.",
+  "imageUrls": ["https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/apartment-1.jpg", "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/apartment-2.jpg", "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/resort-3.jpg"],
+  "description": "A luxurious eatery with panoramic views of red rock formations. Features include a private pool, outdoor fire pit, and spacious open-plan living.",
   "slug": "tropical-tides-bungalow",
   "type": "Apartment"
   }
@@ -75,31 +75,31 @@ DELETE http://localhost:5001/api/accommodations/17f5a7a3-cf4b-4530-9ac0-00876dd2
 
 
 ###
-GET http://localhost:5001/api/tours
+GET http://localhost:5001/api/events
 
 ###
-GET http://localhost:5001/api/tours/idanre-hill
+GET http://localhost:5001/api/events/osun-osogbo-festival
 
 
 ###
-POST http://localhost:5001/api/tours/
+POST http://localhost:5001/api/events/
 Content-Type: application/json
 
 {
- "name": "Idanre Hill",
-  "address": "Jackson Hole,Idanre",
+ "name": "Osun Osogbo Festival",
+  "address": "Osogbo",
+  "date": "13th July 2024",
   "description": "This stylish loft in the heart of Brooklyn offers a vibrant city experience with rooftop access and a cozy industrial vibe. Perfect for exploring local coffee shops and nightlife.",
   "region": "South_West",
-  "state": "Ondo",
-  "imageUrls": ["https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/airbnb-8.jpg",
-    "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/apartment-1.jpg",
-    "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/hotel-2.jpg"],
-  "createdAt": "2025-01-02T18:58:05.517Z",
-  "slug": "idanre-hill"
+  "state": "Osun",
+  "imageUrls": ["https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/airbnb-3.jpg",
+    "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/resort-2.jpg",
+    "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/hotel-5.jpg"],
+  "slug": "osun-osogbo-festival"
   }
 
 ###
-PUT http://localhost:5001/api/tours/lekki-conservation-center
+PUT http://localhost:5001/api/food_drinks/lekki-conservation-center
 Content-Type: application/json
 
 {
@@ -116,49 +116,5 @@ Content-Type: application/json
       "slug": "lekki-conservation-center"
     }
 ###
-DELETE http://localhost:5001/api/tours/d1396962-15f4-43a7-985b-82b6ded4b0d9
+DELETE http://localhost:5001/api/food_drinks/d1396962-15f4-43a7-985b-82b6ded4b0d9
 
-###
-GET http://localhost:5001/api/nightlife
-
-###
-GET http://localhost:5001/api/nightlife/resort-a
-
-###
-GET http://localhost:5001/api/nightlife/type/lounge/
-
-###
-POST http://localhost:5001/api/nightlife/
-Content-Type: application/json
-
-{
-  "name": "Pacuso Lounge",
-  "address": "4b Osborne Inn, Port Harcourt",
-  "state": "Rivers",
-  "region": "South_South",
-  "imageUrls": ["https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/hotel-2.jpg", "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/airbnb-4.jpg", "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/resort-7.jpg"],
-  "description": "A luxurious desert getaway with panoramic views of red rock formations. Features include a private pool, outdoor fire pit, and spacious open-plan living.",
-  "slug": "pacuso-lounge",
-  "type": "Lounge"
-  }
-
-###
-PUT http://localhost:5001/api/nightlife/ff37784b-c6d1-49ad-9c06-170034696f3b
-Content-Type: application/json
-
-{
- "name": "Pacuso Lounge",
-      "address": "42 Osborne Close, Port Harcourt",
-      "description": "A luxurious desert getaway with panoramic views of red rock formations. Features include a private pool, outdoor fire pit, and spacious open-plan living.",
-      "region": "South_South",
-      "state": "Rivers",
-      "imageUrls": [
-        "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/hotel-2.jpg",
-        "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/airbnb-4.jpg",
-        "https://res.cloudinary.com/dpnzmcban/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/accommodation/resort-7.jpg"
-      ],
-      "slug": "pacuso-lounge",
-      "type": "Lounge"
-    }
-###
-DELETE http://localhost:5001/api/accommodations/17f5a7a3-cf4b-4530-9ac0-00876dd206d8

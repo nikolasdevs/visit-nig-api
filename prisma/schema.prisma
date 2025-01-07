@@ -84,6 +84,7 @@ model Event {
   name        String      @unique @db.VarChar(255)
   address     String      @db.VarChar(255)
   description String      @db.VarChar(255)
+  date        String
   region      region_type
   state       String      @db.VarChar(255)
   imageUrls   String[]
