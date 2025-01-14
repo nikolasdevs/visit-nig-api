@@ -19,7 +19,7 @@ export const createTour = async (req, res, next) => {
   }
 
   try {
-    const existingName = await prisma.tourism.findUnique({
+    const existingName = await prisma.tours.findUnique({
       where: { name },
     });
     if (existingName) {
@@ -28,7 +28,7 @@ export const createTour = async (req, res, next) => {
 
     // const imageUrls = req.files.map((file) => file.path);
 
-    const newTour = await prisma.tourism.create({
+    const newTour = await prisma.tours.create({
       data: {
         name,
         address,
@@ -47,9 +47,9 @@ export const createTour = async (req, res, next) => {
 
 export const getAllTours = async (req, res, next) => {
   try {
-    const tours = await prisma.tourism.findMany();
+    const tours = await prisma.tours.findMany();
     if (!tours || tours.length === 0) {
-      return handleResponse(res, 404, "No tourism found");
+      return handleResponse(res, 404, "No tours found");
     }
     handleResponse(res, 200, "Tour fetched successfully", tours);
   } catch (err) {
@@ -65,7 +65,7 @@ export const getTourBySlug = async (req, res, next) => {
     }
     // const names = name.toLowerCase();
 
-    const tour = await prisma.tourism.findFirst({
+    const tour = await prisma.tours.findFirst({
       where: { slug },
       include: {
         // include any related models if needed
@@ -83,7 +83,7 @@ export const getTourBySlug = async (req, res, next) => {
 };
 
 export const updateTour = async (req, res, next) => {
-  const { slug } = req.params;
+  const { id } = req.params;
   const { name, address, state, region, description, imageUrls } = req.body;
 
   if (!slug) {
@@ -95,20 +95,20 @@ export const updateTour = async (req, res, next) => {
   }
 
   try {
-    const existingTour = await prisma.tourism.findFirst({
-      where: { slug },
+    const existingTour = await prisma.tours.findUnique({
+      where: { id },
     });
 
     if (!existingTour) {
-      return handleResponse(res, 404, "Tourism not found");
+      return handleResponse(res, 404, "Tours not found");
     }
 
-    const updatedTour = await prisma.tourism.update({
+    const updatedTour = await prisma.tours.update({
       where: { slug },
       data: { name, slug, address, state, region, description, imageUrls },
     });
 
-    handleResponse(res, 200, "Tourism updated successfully", updatedTour);
+    handleResponse(res, 200, "Tours updated successfully", updatedTour);
   } catch (err) {
     next(err);
   }
@@ -117,14 +117,14 @@ export const updateTour = async (req, res, next) => {
 export const deleteTour = async (req, res, next) => {
   const { id } = req.params
 
-  if (!id) return handleResponse(res, 400, "Tourism id is required");
+  if (!id) return handleResponse(res, 400, "Tours id is required");
 
   try {
-    const deletedTour = await prisma.tourism.delete({
+    const deletedTour = await prisma.tours.delete({
       where: { id: id},
     });
-    if (!deletedTour) return handleResponse(res, 404, "Tourism not found");
-    handleResponse(res, 200, "Tourism deleted successfully", deletedTour);
+    if (!deletedTour) return handleResponse(res, 404, "Tours not found");
+    handleResponse(res, 200, "Tours deleted successfully", deletedTour);
   } catch (err) {
     next(err);
   }

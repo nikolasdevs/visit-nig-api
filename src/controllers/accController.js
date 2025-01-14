@@ -10,6 +10,7 @@ const handleResponse = (res, status, message, data = null) => {
   });
 };
 
+
 export const createAcc = async (req, res, next) => {
   const { name, address, state, region, description, type, imageUrls, slug } =
     req.body;

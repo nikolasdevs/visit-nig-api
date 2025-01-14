@@ -7,131 +7,162 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Accommodation {
-  id          String             @id @default(uuid())
-  name        String             @unique @db.VarChar(255)
-  address     String             @db.VarChar(255)
-  description String             @db.VarChar(255)
-  region      region_type
-  state       String             @db.VarChar(255)
-  imageUrls   String[]
-  createdAt   DateTime?          @default(now()) @db.Timestamp(6)
-  slug        String             @unique @db.VarChar(255)
-  type        accommodation_type
-
-  @@unique([name, slug])
+model admin {
+  id            Int       @id(map: "admins_pkey") @default(autoincrement())
+  username      String    @unique(map: "admins_username_key") @db.VarChar(255)
+  email         String    @unique(map: "admins_email_key") @db.VarChar(255)
+  password_hash String
+  is_superuser  Boolean?  @default(false)
+  created_at    DateTime? @default(now()) @db.Timestamp(6)
+  updated_at    DateTime? @default(now()) @db.Timestamp(6)
 }
 
 model users {
-  id         String    @id @unique @default(uuid())
-  name       String    @db.VarChar(255)
-  email      String    @unique @db.VarChar(255)
-  created_at DateTime? @default(now()) @db.Timestamp(6)
+  id           Int       @id @default(autoincrement())
+  name         String    @db.VarChar(255)
+  email        String    @unique @db.VarChar(255)
+  phone_number String?   @db.VarChar(15)
+  nationality  String?   @db.VarChar(100)
+  basket       Json?
+  created_at   DateTime? @default(now()) @db.Timestamp(6)
 }
 
-model Tourism {
-  id          String      @id @default(uuid())
-  name        String      @unique @db.VarChar(255)
-  address     String      @db.VarChar(255)
-  description String      @db.VarChar(255)
-  region      region_type
-  state       String      @db.VarChar(255)
-  imageUrls   String[]
-  slug        String      @unique @db.VarChar(255)
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  categoryId  String?
-
-  @@unique([id, slug])
+model countries {
+  id       String @id @db.VarChar(50)
+  name     String @db.VarChar(100)
+  iso_code String @unique @db.VarChar(3)
 }
 
-model Shopping {
-  id          String        @id @default(uuid())
-  name        String        @unique @db.VarChar(255)
-  address     String        @db.VarChar(255)
-  description String        @db.VarChar(255)
-  region      region_type
-  state       String        @db.VarChar(255)
-  imageUrls   String[]
-  slug        String        @unique @db.VarChar(255)
-  type        shopping_type
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  categoryId  String?
-
-  @@unique([id, slug])
+model region {
+  name       String       @db.VarChar(255)
+  created_at DateTime?    @default(now()) @db.Timestamp(6)
+  updated_at DateTime?    @default(now()) @db.Timestamp(6)
+  id         Int          @id @default(autoincrement())
+  nig_states nig_states[]
+  tours      tours[]
+  nightlife  nightlife[]
 }
 
-model Nightlife {
-  id          String         @id @default(uuid())
-  name        String         @unique @db.VarChar(255)
-  address     String         @db.VarChar(255)
-  description String         @db.VarChar(255)
-  region      region_type
-  state       String         @db.VarChar(255)
-  imageUrls   String[]
-  slug        String         @unique @db.VarChar(255)
-  type        nightlife_type
-  createdAt   DateTime       @default(now())
-  updatedAt   DateTime       @updatedAt
-  categoryId  String?
-
-  @@unique([id, slug])
+model nig_states {
+  state_name String      @db.VarChar(255)
+  id         Int         @id @default(autoincrement())
+  region_id  Int?
+  region     region?     @relation(fields: [region_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_region")
+  tours      tours[]
+  nightlife  nightlife[]
 }
 
-model Event {
-  id          String      @id @default(uuid())
-  name        String      @unique @db.VarChar(255)
-  address     String      @db.VarChar(255)
-  description String      @db.VarChar(255)
-  date        String
-  region      region_type
-  state       String      @db.VarChar(255)
-  imageUrls   String[]
-  slug        String      @unique @db.VarChar(255)
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  categoryId  String?
-
-  @@unique([id, slug])
+model local_govts {
+  lg_name   String      @db.VarChar(255)
+  id        Int         @id @default(autoincrement())
+  state_id  Int?
+  tours     tours[]
+  hotels    hotels[]
+  motels    motels[]
+  bnb       bnb[]
+  nightlife nightlife[]
 }
 
-model Food_Drink {
-  id          String      @id @default(uuid())
-  name        String      @unique @db.VarChar(255)
-  address     String      @db.VarChar(255)
-  description String      @db.VarChar(255)
-  region      region_type
-  state       String      @db.VarChar(255)
-  imageUrls   String[]
-  slug        String      @unique @db.VarChar(255)
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  categoryId  String?
-
-  @@unique([id, slug])
+model thingstodo {
+  id        Int         @id @default(autoincrement())
+  name      String      @unique @db.VarChar(255)
+  tours     tours[]
+  nightlife nightlife[]
 }
 
-enum accommodation_type {
-  Hotel
-  Airbnb
-  Resort
-  Apartment
-  Other
+model tours {
+  id            Int          @id @default(autoincrement())
+  name          String       @db.VarChar(255)
+  description   String?
+  price         Decimal      @db.Decimal(10, 2)
+  availability  Boolean?     @default(true)
+  address       String?      @db.VarChar(255)
+  images_url    String[]
+  created_at    DateTime?    @default(now()) @db.Timestamp(6)
+  local_govt_id Int?
+  state_id      Int?
+  region_id     Int?
+  thingstodo_id Int?
+  local_govts   local_govts? @relation(fields: [local_govt_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_lg")
+  region        region?      @relation(fields: [region_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_region")
+  nig_states    nig_states?  @relation(fields: [state_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_state")
+  thingstodo    thingstodo?  @relation(fields: [thingstodo_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_thingstodo")
 }
 
-enum region_type {
-  South_West
-  South_East
-  South_South
-  North_West
-  North_East
-  North_Central
+model nightlife {
+  id            Int            @id @default(autoincrement())
+  name          String         @db.VarChar(255)
+  description   String?
+  price         Decimal        @db.Decimal(10, 2)
+  availability  Boolean?       @default(true)
+  address       String?        @db.VarChar(255)
+  images_url    String[]
+  type          nightlife_type @default(Club)
+  created_at    DateTime?      @default(now()) @db.Timestamp(6)
+  local_govt_id Int?
+  state_id      Int?
+  region_id     Int?
+  thingstodo_id Int?
+  local_govts   local_govts?   @relation(fields: [local_govt_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_lg")
+  region        region?        @relation(fields: [region_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_region")
+  nig_states    nig_states?    @relation(fields: [state_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_state")
+  thingstodo    thingstodo?    @relation(fields: [thingstodo_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_thingstodo")
 }
 
-enum shopping_type {
-  Mall
-  Market
+model accommodations {
+  id     Int      @id @default(autoincrement())
+  name   String   @unique @db.VarChar(255)
+  bnb    bnb[]
+  hotels hotels[]
+  motels motels[]
+}
+
+model bnb {
+  id               Int            @id @default(autoincrement())
+  name             String         @unique @db.VarChar(255)
+  description      String         @db.VarChar(255)
+  price            Decimal        @db.Decimal(10, 2)
+  address          String         @db.VarChar(255)
+  images_url       String[]
+  local_govt_id    Int?
+  state_id         Int?
+  region_id        Int?
+  accommodation_id Int
+  accommodations   accommodations @relation(fields: [accommodation_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  local_govts      local_govts?   @relation(fields: [local_govtsId], references: [id])
+  local_govtsId    Int?
+}
+
+model hotels {
+  id               Int            @id @default(autoincrement())
+  name             String         @unique @db.VarChar(255)
+  description      String         @db.VarChar(255)
+  price            Decimal        @db.Decimal(10, 2)
+  address          String         @db.VarChar(255)
+  images_url       String[]
+  local_govt_id    Int?
+  state_id         Int?
+  region_id        Int?
+  accommodation_id Int
+  accommodations   accommodations @relation(fields: [accommodation_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  local_govts      local_govts?   @relation(fields: [local_govtsId], references: [id])
+  local_govtsId    Int?
+}
+
+model motels {
+  id               Int            @id @default(autoincrement())
+  name             String         @unique @db.VarChar(255)
+  description      String         @db.VarChar(255)
+  price            Decimal        @db.Decimal(10, 2)
+  address          String         @db.VarChar(255)
+  images_url       String[]
+  local_govt_id    Int?
+  state_id         Int?
+  region_id        Int?
+  accommodation_id Int
+  accommodations   accommodations @relation(fields: [accommodation_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  local_govts      local_govts?   @relation(fields: [local_govtsId], references: [id])
+  local_govtsId    Int?
 }
 
 enum nightlife_type {

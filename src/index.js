@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import pool from "./config/db.js";
+import adminRoutes from "./routes/adminRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import accRoutes from "./routes/accRoutes.js";
 import tourRoutes from "./routes/tourRoutes.js";
@@ -16,7 +17,6 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3001;
-
 //Middlewares
 app.use(express.json());
 app.use(cors());
@@ -29,6 +29,7 @@ app.use("/api", tourRoutes);
 app.use("/api", nightlifeRoutes);
 app.use("/api", shoppingRoutes);
 app.use("/api", food_drinkRoutes);
+app.use("/api", adminRoutes);
 
 // Error handling Middleware
 app.use(errorHandling);
