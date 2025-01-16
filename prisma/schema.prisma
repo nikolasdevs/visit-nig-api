@@ -28,7 +28,7 @@ model users {
 }
 
 model countries {
-  id       String @id @db.VarChar(50)
+  id       Int    @id @default(autoincrement())
   name     String @db.VarChar(100)
   iso_code String @unique @db.VarChar(3)
 }

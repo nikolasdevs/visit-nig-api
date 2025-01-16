@@ -10,7 +10,6 @@ const handleResponse = (res, status, message, data = null) => {
   });
 };
 
-
 export const createAcc = async (req, res, next) => {
   const { name, address, state, region, description, type, imageUrls, slug } =
     req.body;
@@ -28,7 +27,7 @@ export const createAcc = async (req, res, next) => {
   }
 
   try {
-    const existingName = await prisma.accommodation.findUnique({
+    const existingName = await prisma.accommodations.findUnique({
       where: { name },
     });
     if (existingName) {
@@ -41,7 +40,7 @@ export const createAcc = async (req, res, next) => {
 
     // const imageUrls = req.files.map((file) => file.path);
 
-    const newAcc = await prisma.accommodation.create({
+    const newAcc = await prisma.accommodations.create({
       data: {
         name,
         address,
@@ -61,7 +60,7 @@ export const createAcc = async (req, res, next) => {
 
 export const getAllAcc = async (req, res, next) => {
   try {
-    const accommodations = await prisma.accommodation.findMany();
+    const accommodations = await prisma.accommodations.findMany();
     if (!accommodations || accommodations.length === 0) {
       return handleResponse(res, 404, "No accommodations found");
     }
@@ -84,7 +83,7 @@ export const getAccBySlug = async (req, res, next) => {
     }
     // const names = name.toLowerCase();
 
-    const accommodation = await prisma.accommodation.findFirst({
+    const accommodation = await prisma.accommodations.findFirst({
       where: { slug },
       include: {
         // include any related models if needed
@@ -129,7 +128,7 @@ export const getAccByType = async (req, res, next) => {
     }
 
     // Fetch accommodations
-    const accommodations = await prisma.accommodation.findMany({
+    const accommodations = await prisma.accommodations.findMany({
       where: { type: dbType },
     });
 
@@ -173,7 +172,7 @@ export const updateAcc = async (req, res, next) => {
   }
 
   try {
-    const existingAcc = await prisma.accommodation.findUnique({
+    const existingAcc = await prisma.accommodations.findUnique({
       where: { id },
     });
 
@@ -197,7 +196,7 @@ export const deleteAcc = async (req, res, next) => {
   if (!id) return handleResponse(res, 400, "Accommodation ID is required");
 
   try {
-    const deletedAcc = await prisma.accommodation.delete({
+    const deletedAcc = await prisma.accommodations.delete({
       where: { id },
     });
     if (!deletedAcc) return handleResponse(res, 404, "Accommodation not found");

@@ -1,29 +1,28 @@
 ###
-GET http://localhost:5001/api/admin
+GET http://localhost:5001/api/states
 
 ###
-GET http://localhost:5001/api/user/1
+GET http://localhost:5001/api/states/31
 
 ###
-POST http://localhost:5001/api/user/
+POST http://localhost:5001/api/countries/
 Content-Type: application/json
 
-{
-  "name": "Admin2",
-  "email": "admin2@test.com"
-  }
+
+
+{"name": "Germany", "iso_code": "DE"}
+
 
 ###
-PUT http://localhost:5001/api/user/1
+PUT http://localhost:5001/api/region/6
 Content-Type: application/json
 
-{
-  "name": "John",
-  "email": "john@test.com"
-  }
 
-###
-DELETE http://localhost:5001/api/user/1
+{"name": "South West"}
+  
+
+### 
+DELETE http://localhost:5001/api/countries/3
 
 
 ###
